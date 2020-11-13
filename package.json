@@ -1,0 +1,24 @@
+{
+  "name": "automatic",
+  "version": "1.0.0",
+  "description": "Google search for wholeseller",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faustopereyra/Automatic-data-search.git"
+  },
+  "author": "fausto pereyra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faustopereyra/Automatic-data-search/issues"
+  },
+  "homepage": "https://github.com/faustopereyra/Automatic-data-search#readme",
+  "dependencies": {
+    "core-js": "^3.7.0",
+    "exceljs": "^4.2.0",
+    "regenerator-runtime": "^0.13.7"
+  }
+}

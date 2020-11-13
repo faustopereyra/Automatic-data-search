@@ -1,11 +1,27 @@
 const keys = require("./key");
+
+const Excel = require('exceljs');
+
 https = require('https');
+
+exel = require("./exel")
+
+const workbook = new Excel.Workbook();
+  const worksheet = workbook.addWorksheet("Ciudad");
+
+worksheet.columns = [
+  {header: 'Mayorista', key: 'mayorista', width: 30},
+  {header: 'Contacto', key: 'contacto', width: 45}, 
+  {header: 'Particularidad', key: 'particularidad', width: 25,},
+  {header: 'Localidad', key: 'localidad', width: 25,}
+];
+
 
 const key = keys.key
 
 let result = ""
 
-let place = "mayoristas+san+isidro+argentina"
+let place = "mayoristas+la+plata+buenos+aires+argentina"
 
 let query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+ place +"&fields=name,formatted_phone_number&key=" + key
 
@@ -56,7 +72,8 @@ const detailLookup = (id) =>{
           resp.on('end', () => {
             //console.log(JSON.parse(data));
             let details = JSON.parse(data).result
-            console.log(details)
+            //console.log(details)
+            exel.exTest(details, "posadas", worksheet, workbook);
           });
 
         
