@@ -1,34 +1,19 @@
 const keys = require("./key");
 
 const Excel = require('exceljs');
+const { data } = require("./test");
+
+const newvaProvincia = data
 
 https = require('https');
 
 exel = require("./exel")
 
-const workbook = new Excel.Workbook();
-  const worksheet = workbook.addWorksheet("Ciudad");
-
-worksheet.columns = [
-  {header: 'Mayorista', key: 'mayorista', width: 30},
-  {header: 'Contacto', key: 'contacto', width: 45}, 
-  {header: 'Particularidad', key: 'particularidad', width: 25,},
-  {header: 'Localidad', key: 'localidad', width: 25,}
-];
-
-
 const key = keys.key
 
-let result = ""
 
-let place = "mayoristas+la+plata+buenos+aires+argentina"
-
-let query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+ place +"&fields=name,formatted_phone_number&key=" + key
-
-
-
-const searchLookup = (query) =>{
-    https.get( query, (resp) =>{
+const searchLookup =  (query, localidad) =>{
+     https.get( query, (resp) =>{
         let data = '';
        
         resp.on('data', (chunk) => {
@@ -37,18 +22,16 @@ const searchLookup = (query) =>{
       
         resp.on('end', () => {
           result = JSON.parse(data)
-          //console.log(result)
           
-          result.results.forEach(el => {
+          result.results.forEach( el => {
     
-            detailLookup(el.place_id)
+             detailLookup(el.place_id, localidad)
           });
 
+
           if(result.next_page_token){
-              console.log("hola")
-            let newQuery = "https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken="+ result.next_page_token+"&key="+key ;
-            let p = "este es p"
-            searchLookup(newQuery)
+            let newQuery = "https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken="+ result.next_page_token+"&key="+key;
+            searchLookup(newQuery, localidad)
         }
         });
       
@@ -59,21 +42,19 @@ const searchLookup = (query) =>{
 
 
 
-const detailLookup = (id) =>{
+const detailLookup =  (id, localidad) =>{
     const newQuery = "https://maps.googleapis.com/maps/api/place/details/json?place_id="+ id +"&fields=name,formatted_phone_number,formatted_address,type,website&key=" + key;
 
-    //console.log(newQuery)
     https.get( newQuery, (resp) =>{
         let data = '';
         resp.on('data', (chunk) => {
             data += chunk;
           });
 
-          resp.on('end', () => {
-            //console.log(JSON.parse(data));
+          resp.on('end',  () => {
             let details = JSON.parse(data).result
-            //console.log(details)
-            exel.exTest(details, "posadas", worksheet, workbook);
+            console.log(details)
+             exel.exTest(details, localidad, worksheet, workbook);
           });
 
         
@@ -82,4 +63,26 @@ const detailLookup = (id) =>{
     });
 };
 
-searchLookup(query)
+
+const workbook = new Excel.Workbook();
+const worksheet = workbook.addWorksheet("Provincia");
+
+worksheet.columns = [
+  {header: 'Mayorista', key: 'mayorista', width: 30},
+  {header: 'Contacto', key: 'contacto', width: 45}, 
+  {header: 'Particularidad', key: 'particularidad', width: 25,},
+  {header: 'Localidad', key: 'localidad', width: 25,}
+];
+
+
+
+
+newvaProvincia.forEach( search => {
+    const place = search[0];
+    const localidad = search[1]
+    const query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+ place +"&fields=name,formatted_phone_number&key=" + key;
+    searchLookup(query, localidad);
+} );
+
+
+

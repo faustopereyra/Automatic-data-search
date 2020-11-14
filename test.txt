@@ -1,5 +1,0 @@
-const data = {formatted_address: 'Av. Jorge Newbery 2394, Paraná, Entre Ríos, Argentina',
-formatted_phone_number: '0343 426-9291',
-name: 'Exfa Distribuciones',
-types: [ 'store', 'point_of_interest', 'establishment' ],
-website: 'http://www.facebook.com/ExfaDistrib'}

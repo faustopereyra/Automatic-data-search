@@ -19,6 +19,7 @@
   "dependencies": {
     "core-js": "^3.7.0",
     "exceljs": "^4.2.0",
+    "node-fetch": "^2.6.1",
     "regenerator-runtime": "^0.13.7"
   }
 }
