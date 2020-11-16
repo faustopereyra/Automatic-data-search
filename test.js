@@ -253,8 +253,6 @@ exports.data= [["mayorista+la+matanza+provincia+de+buenos+aires+argentina","la m
 ["mayorista+9+de+julio+provincia+de+buenos+aires+argentina","9 de julio"],
 ["mayorista+balcarse+provincia+de+buenos+aires+argentina","balcarse"],
 ["mayorista+trenque+lauquen+provincia+de+buenos+aires+argentina","trenque lauquen"],
-
-
 ["mayorista+chascomus+provincia+de+buenos+aires+argentina","chacomus"],
 ["mayorista+lincoln+provincia+de+buenos+aires+argentina","lincoln"],
 ["mayorista+bragado+provincia+de+buenos+aires+argentina","bragado"],
@@ -307,7 +305,7 @@ exports.data= [["mayorista+la+matanza+provincia+de+buenos+aires+argentina","la m
 ["mayorista+monte+hermoso+provincia+de+buenos+aires+argentina","monte hermoso"],
 ["mayorista+pellegrini+provincia+de+buenos+aires+argentina","Pellegrini"],
 ["mayorista+general+lavalle+provincia+de+buenos+aires+argentina","general lavalle"],
-["mayorista, pila+provincia+de+buenos+aires+argentina","pila"],
+["mayorista+pila+provincia+de+buenos+aires+argentina","pila"],
 ["mayorista+general+guido+provincia+de+buenos+aires+argentina","general guido"],
 ["mayorista+tordillo+provincia+de+buenos+aires+argentina","tordillo"],
 ["mayorista+general+viamonte+provincia+de+buenos+aires+argentina","general Viamonte"],
